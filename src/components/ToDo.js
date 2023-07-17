@@ -8,37 +8,40 @@ const ToDo = () => {
 
   return (
     <div>
-        
       <input
         value={clearinput}
         type="text"
         onChange={(event) => {
           setInput(event.target.value);
-          setObj({ ...Obj, todo: event.target.value });
+          setObj({ ...Obj, todo: clearinput });
         }}
       />
 
       <button
         onClick={() => {
-          setInput("");
-          setDetails([...details, Obj]);
+          if (clearinput.trim()) {
+            setDetails([...details, Obj]);
+            setInput("");
+          }
         }}
       >
         Add Todo
       </button>
       {details &&
         details.map((obj, index) => (
-          <div key={index}>
-            <span>{obj.todo}</span>
-            <button
-              onClick={() => {
-                details.splice(index, 1);
-                setDetails([...details]);
-              }}
-            >
-              Delete
-            </button>
-          </div>
+          <ul key={index}>
+            <li>
+              <span>{obj.todo}</span>
+              <button
+                onClick={() => {
+                  details.splice(index, 1);
+                  setDetails([...details]);
+                }}
+              >
+                Delete
+              </button>
+            </li>
+          </ul>
         ))}
     </div>
   );
