@@ -31,7 +31,7 @@ const ToDo = () => {
         details.map((obj, index) => (
           <ul key={index}>
             <li>
-              <span>{obj.todo}</span>
+              {obj.todo}
               <button
                 onClick={() => {
                   details.splice(index, 1);
